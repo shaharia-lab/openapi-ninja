@@ -3,10 +3,17 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 func WhatIsMyIPHandler(w http.ResponseWriter, r *http.Request) {
-	ip := r.Header.Get("X-Forwarded-For")
+	var ip string
+
+	ips := r.Header.Get("X-Forwarded-For")
+	if ips != "" {
+		ip = strings.Split(ips, ", ")[0]
+	}
+
 	if ip == "" {
 		ip = r.RemoteAddr
 	}
