@@ -1,0 +1,45 @@
+runtime: go120
+
+service: default
+
+instance_class: F1
+
+env_variables:
+  BUCKET_NAME: ""
+
+handlers:
+  - url: /
+    static_files: static/index.html
+    upload: static/index.html
+
+  - url: /api/.*
+    script: auto
+
+  - url: /(.*\.(gif|png|jpg|ico|txt))$
+    static_files: static/\1
+    upload: static/.*\.(gif|png|jpg|ico|txt)$
+
+  - url: .*
+    secure: always
+    redirect_http_response_code: 301
+    static_files: static/404.html
+    upload: static/404.html
+
+    # Add custom domain mapping here
+    # Replace example.com with your custom domain name
+    # Replace www.example.com with your www subdomain if applicable
+    # For HTTPS, use the secure field and provide a valid SSL certificate
+    # For HTTP, omit the secure field and use http://example.com
+    # Make sure to verify ownership of the domain in the Google Cloud Console
+  - url: "(.*)/"
+    static_files: static\1/index.html
+    upload: static/(.*)/index.html
+  - url: "(.*)"
+    static_files: static\1/index.html
+    upload: static/(.*)/index.html
+    http_headers:
+      Strict-Transport-Security: max-age=31536000; includeSubDomains
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-XSS-Protection: 1; mode=block
+      Referrer-Policy: strict-origin-when-cross-origin
