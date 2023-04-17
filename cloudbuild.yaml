@@ -1,6 +1,10 @@
 steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy"]
+    env:
+      - 'BUILD_ID=$BUILD_ID'
+      - 'COMMIT_SHA=$COMMIT_SHA'
+      - 'SHORT_SHA=$SHORT_SHA'
 timeout: "1600s"
 options:
   logging: CLOUD_LOGGING_ONLY

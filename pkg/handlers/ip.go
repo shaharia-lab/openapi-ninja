@@ -7,16 +7,7 @@ import (
 )
 
 func WhatIsMyIPHandler(w http.ResponseWriter, r *http.Request) {
-	var ip string
-
-	ips := r.Header.Get("X-Forwarded-For")
-	if ips != "" {
-		ip = strings.Split(ips, ", ")[0]
-	}
-
-	if ip == "" {
-		ip = r.RemoteAddr
-	}
+	ip := RequestFromIP(r)
 
 	format := r.URL.Query().Get("format")
 	switch format {
@@ -33,4 +24,18 @@ func WhatIsMyIPHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintf(w, `{"ip": "%s"}`, ip)
 	}
+}
+
+func RequestFromIP(r *http.Request) string {
+	var ip string
+
+	ips := r.Header.Get("X-Forwarded-For")
+	if ips != "" {
+		ip = strings.Split(ips, ", ")[0]
+	}
+
+	if ip == "" {
+		ip = r.RemoteAddr
+	}
+	return ip
 }
