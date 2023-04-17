@@ -13,7 +13,7 @@ handlers:
     static_files: static/index.html
     upload: static/index.html
 
-  - url: /api/.*
+  - url: /.*
     script: auto
 
   - url: /(.*\.(gif|png|jpg|ico|txt))$
