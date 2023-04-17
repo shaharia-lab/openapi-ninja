@@ -1,11 +1,15 @@
+// Package logging provides logging functionality for the application
 package logging
 
 import (
-	"github.com/shahariaazam/openapi-ninja/pkg/config"
-	"github.com/sirupsen/logrus"
 	"os"
+
+	"github.com/sirupsen/logrus"
+
+	"github.com/shahariaazam/openapi-ninja/pkg/config"
 )
 
+// NewLogger build new logger for the application
 func NewLogger(cfg config.Config) *logrus.Logger {
 	logger := logrus.New()
 

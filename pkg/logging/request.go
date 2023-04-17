@@ -1,11 +1,13 @@
+// Package logging provides logging functionality for the application
 package logging
 
 import (
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/sirupsen/logrus"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/go-chi/chi/v5/middleware"
+	"github.com/sirupsen/logrus"
 )
 
 // LogrusLogger is a wrapper around a logrus logger that implements the chi.Logger interface

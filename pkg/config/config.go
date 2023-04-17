@@ -1,10 +1,13 @@
+// Package config load and process application configuration
 package config
 
 import (
 	"fmt"
+
 	"github.com/kelseyhightower/envconfig"
 )
 
+// Config store configuration for application
 type Config struct {
 	HTTPPort            string `envconfig:"PORT" default:"8080"`
 	AppVersion          string `envconfig:"GAE_VERSION"`
@@ -18,6 +21,7 @@ type Config struct {
 	APIRequestLimitPerMinute int `envconfig:"API_REQUEST_LIMIT_PER_MINUTE" default:"10"`
 }
 
+// Load configuration
 func Load() (Config, error) {
 	var config Config
 	err := envconfig.Process("", &config)

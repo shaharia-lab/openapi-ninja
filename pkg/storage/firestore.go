@@ -1,16 +1,21 @@
+// Package storage provides the functionality to interact with any data storage
 package storage
 
 import (
-	"cloud.google.com/go/firestore"
 	"context"
 	"log"
+
+	"cloud.google.com/go/firestore"
+
+	"github.com/shahariaazam/openapi-ninja/pkg/config"
 )
 
-func FireStore() {
+// NewFireStore build client to communicate with Firestore
+func NewFireStore(cfg config.Config) {
 	ctx := context.Background()
 
 	// Replace "my-project-id" with your own project ID
-	projectID := "my-project-id"
+	projectID := cfg.GoogleCloudProject
 
 	// Create a new Firestore client using the default credentials mechanism
 	client, err := firestore.NewClient(ctx, projectID)

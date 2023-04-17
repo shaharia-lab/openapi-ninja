@@ -1,13 +1,17 @@
+// Package handlers handle all api endpoint
 package handlers
 
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/shahariaazam/openapi-ninja/pkg/config"
-	"github.com/sirupsen/logrus"
 	"net/http"
+
+	"github.com/sirupsen/logrus"
+
+	"github.com/shahariaazam/openapi-ninja/pkg/config"
 )
 
+// Status of the application
 type Status struct {
 	BuildID        string `json:"build_id"`
 	CommitShaFull  string `json:"commit_sha_full"`
@@ -26,6 +30,7 @@ func getAppStatus(cfg config.Config) ([]byte, error) {
 	return json.Marshal(s)
 }
 
+// StatusHandler handle request for /status endpoint
 func StatusHandler(w http.ResponseWriter, r *http.Request, cfg config.Config) {
 	w.Header().Set("Content-Type", "application/json")
 

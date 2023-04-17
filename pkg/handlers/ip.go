@@ -1,3 +1,4 @@
+// Package handlers handle all api endpoint
 package handlers
 
 import (
@@ -6,6 +7,7 @@ import (
 	"strings"
 )
 
+// WhatIsMyIPHandler resolves IP address from http request
 func WhatIsMyIPHandler(w http.ResponseWriter, r *http.Request) {
 	ip := RequestFromIP(r)
 
@@ -26,6 +28,7 @@ func WhatIsMyIPHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// RequestFromIP finds which IP made the request
 func RequestFromIP(r *http.Request) string {
 	var ip string
 

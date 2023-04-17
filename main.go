@@ -1,19 +1,20 @@
+// Package main is the main package
 package main
 
 import (
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/shahariaazam/openapi-ninja/pkg/logging"
-	"github.com/sirupsen/logrus"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/httprate"
+	"github.com/sirupsen/logrus"
 
 	"github.com/shahariaazam/openapi-ninja/pkg/config"
 	"github.com/shahariaazam/openapi-ninja/pkg/handlers"
+	"github.com/shahariaazam/openapi-ninja/pkg/logging"
 )
 
 func main() {
